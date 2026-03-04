@@ -36,9 +36,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/user/react-soci-auth"
+    "url": "https://github.com/s4spublic/react-soci-auth"
   },
-  "homepage": "https://github.com/user/react-soci-auth#readme",
+  "homepage": "https://github.com/s4spublic/react-soci-auth#readme",
   "author": "",
   "peerDependencies": {
     "react": ">=18.0.0",
