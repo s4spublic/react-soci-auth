@@ -1,0 +1,374 @@
+/* ═══════════════════════════════════════════════════════════════════
+   react-soci-auth — Base Stylesheet
+   CSS Custom Properties + Glassmorphism + Animations + Variants
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ─── 1. CSS Custom Properties (Light Mode Defaults) ──────────── */
+
+:root {
+  /* Colors */
+  --soci-color-primary: #6366f1;
+  --soci-color-background: rgba(255, 255, 255, 0.05);
+  --soci-color-surface: rgba(255, 255, 255, 0.1);
+  --soci-color-text: #1a1a2e;
+  --soci-color-text-secondary: #64748b;
+  --soci-color-border: rgba(255, 255, 255, 0.18);
+  --soci-color-success: #22c55e;
+  --soci-color-error: #ef4444;
+
+  /* Spacing */
+  --soci-spacing-xs: 4px;
+  --soci-spacing-sm: 8px;
+  --soci-spacing-md: 12px;
+  --soci-spacing-lg: 16px;
+  --soci-spacing-xl: 24px;
+
+  /* Radius */
+  --soci-radius-sm: 6px;
+  --soci-radius-md: 10px;
+  --soci-radius-lg: 16px;
+  --soci-radius-full: 9999px;
+
+  /* Glass */
+  --soci-glass-blur: 12px;
+  --soci-glass-opacity: 0.15;
+  --soci-glass-gradient: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.25),
+    rgba(255, 255, 255, 0.05)
+  );
+  --soci-glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+
+  /* Motion */
+  --soci-motion-duration: 200ms;
+  --soci-motion-easing: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Button defaults */
+  --soci-button-shape: rounded;
+  --soci-button-icon-position: left;
+  --soci-button-size: medium;
+}
+
+/* ─── 2. Dark Mode Overrides ──────────────────────────────────── */
+
+[data-theme='dark'] {
+  --soci-color-primary: #818cf8;
+  --soci-color-background: rgba(0, 0, 0, 0.3);
+  --soci-color-surface: rgba(255, 255, 255, 0.05);
+  --soci-color-text: #e2e8f0;
+  --soci-color-text-secondary: #94a3b8;
+  --soci-color-border: rgba(255, 255, 255, 0.08);
+  --soci-color-success: #4ade80;
+  --soci-color-error: #f87171;
+  --soci-glass-gradient: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.02)
+  );
+  --soci-glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* ─── 3. Glassmorphism Base — Auth Card ───────────────────────── */
+
+.soci-auth-card {
+  position: relative;
+  padding: var(--soci-spacing-xl);
+  border-radius: var(--soci-radius-lg);
+  border: 1px solid var(--soci-color-border);
+  background: var(--soci-glass-gradient);
+  -webkit-backdrop-filter: blur(var(--soci-glass-blur));
+  backdrop-filter: blur(var(--soci-glass-blur));
+  box-shadow: var(--soci-glass-shadow);
+  overflow: hidden;
+  animation: soci-card-mount var(--soci-motion-duration)
+    var(--soci-motion-easing) both;
+}
+
+/* Gradient overlay pseudo-element for extra depth */
+.soci-auth-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, calc(var(--soci-glass-opacity) * 0.6)) 0%,
+    transparent 60%
+  );
+  pointer-events: none;
+}
+
+/* ─── 4. Social Button Base Styles ────────────────────────────── */
+
+.soci-social-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 16px;
+  border-radius: var(--soci-radius-md);
+  border: 1px solid var(--soci-color-border);
+  background: var(--soci-glass-gradient);
+  -webkit-backdrop-filter: blur(var(--soci-glass-blur));
+  backdrop-filter: blur(var(--soci-glass-blur));
+  box-shadow: var(--soci-glass-shadow);
+  color: var(--soci-color-text);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  user-select: none;
+  white-space: nowrap;
+  outline: none;
+  transition:
+    transform var(--soci-motion-duration) var(--soci-motion-easing),
+    box-shadow var(--soci-motion-duration) var(--soci-motion-easing),
+    background var(--soci-motion-duration) var(--soci-motion-easing),
+    border-color var(--soci-motion-duration) var(--soci-motion-easing),
+    opacity var(--soci-motion-duration) var(--soci-motion-easing);
+}
+
+/* Hover state */
+.soci-social-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow:
+    var(--soci-glass-shadow),
+    0 4px 12px rgba(0, 0, 0, 0.08);
+  border-color: var(--soci-color-primary);
+}
+
+/* Active / click state */
+.soci-social-button:active:not(:disabled) {
+  transform: translateY(0) scale(0.98);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition-duration: 80ms;
+}
+
+/* Disabled state */
+.soci-social-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ─── 5. Focus Indicator — WCAG 2.1 AA ───────────────────────── */
+
+.soci-social-button:focus-visible {
+  outline: 2px solid var(--soci-color-primary);
+  outline-offset: 2px;
+}
+
+/* Ensure focus ring contrast in dark mode */
+[data-theme='dark'] .soci-social-button:focus-visible {
+  outline-color: var(--soci-color-primary);
+  box-shadow: 0 0 0 4px rgba(129, 140, 248, 0.3);
+}
+
+/* ─── 6. Size Variants ────────────────────────────────────────── */
+
+.soci-size-small {
+  height: 32px;
+  padding: 0 12px;
+  font-size: 13px;
+  gap: 6px;
+}
+
+.soci-size-medium {
+  height: 40px;
+  padding: 0 16px;
+  font-size: 14px;
+  gap: 8px;
+}
+
+.soci-size-large {
+  height: 48px;
+  padding: 0 20px;
+  font-size: 16px;
+  gap: 10px;
+}
+
+/* ─── 7. Shape Variants ───────────────────────────────────────── */
+
+.soci-shape-pill {
+  border-radius: 9999px;
+}
+
+.soci-shape-rounded {
+  border-radius: var(--soci-radius-md);
+}
+
+.soci-shape-square {
+  border-radius: 0;
+}
+
+/* ─── 8. 3D Depth Effect ─────────────────────────────────────── */
+
+.soci-3d-depth {
+  transform-style: preserve-3d;
+  perspective: 800px;
+  transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 200ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.soci-3d-depth:hover:not(:disabled) {
+  transform: translateY(-2px) rotateX(2deg) rotateY(-1deg) !important;
+  box-shadow:
+    var(--soci-glass-shadow),
+    0 12px 24px rgba(0, 0, 0, 0.15) !important;
+}
+
+.soci-3d-depth:active:not(:disabled) {
+  transform: translateY(0) rotateX(0) rotateY(0) scale(0.98) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* ─── 9. Keyframe Animations ─────────────────────────────────── */
+
+@keyframes soci-card-mount {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes soci-banner-mount {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ─── 10. Divider Styles ─────────────────────────────────────── */
+
+.soci-divider {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.soci-divider__line {
+  flex: 1;
+  height: 1px;
+  border: none;
+  background-color: var(--soci-color-border);
+  opacity: 0.6;
+}
+
+[data-theme='dark'] .soci-divider__line {
+  opacity: 0.4;
+}
+
+.soci-divider__label {
+  padding: 0 var(--soci-spacing-md);
+  font-size: 0.8125rem;
+  font-weight: 400;
+  color: var(--soci-color-text-secondary);
+  white-space: nowrap;
+  line-height: 1;
+}
+
+/* ─── 11. Banner Styles ──────────────────────────────────────── */
+
+.soci-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--soci-spacing-sm) var(--soci-spacing-md);
+  border-radius: var(--soci-radius-md);
+  font-size: 0.875rem;
+  line-height: 1.4;
+  color: var(--soci-color-text);
+  animation: soci-banner-mount var(--soci-motion-duration)
+    var(--soci-motion-easing) both;
+}
+
+.soci-banner--success {
+  border: 1px solid var(--soci-color-success);
+  background-color: color-mix(in srgb, var(--soci-color-success) 10%, transparent);
+}
+
+.soci-banner--error {
+  border: 1px solid var(--soci-color-error);
+  background-color: color-mix(in srgb, var(--soci-color-error) 10%, transparent);
+}
+
+[data-theme='dark'] .soci-banner--success {
+  background-color: color-mix(in srgb, var(--soci-color-success) 15%, transparent);
+}
+
+[data-theme='dark'] .soci-banner--error {
+  background-color: color-mix(in srgb, var(--soci-color-error) 15%, transparent);
+}
+
+.soci-banner__dismiss {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--soci-spacing-xs);
+  margin-left: var(--soci-spacing-sm);
+  color: var(--soci-color-text-secondary);
+  font-size: 1rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--soci-radius-sm);
+  flex-shrink: 0;
+}
+
+.soci-banner__dismiss:hover {
+  color: var(--soci-color-text);
+}
+
+/* ─── 12. Hover Fill Animation ───────────────────────────────── */
+
+.soci-hover-fill {
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+  transition: color 300ms cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.soci-hover-fill::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  background: var(--soci-hover-fill-color, var(--soci-color-primary, #6366f1));
+  transform: translateY(100%);
+  transition: transform 350ms cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: -1;
+  border-radius: inherit;
+}
+
+.soci-hover-fill:hover:not(:disabled)::before {
+  transform: translateY(0);
+}
+
+.soci-hover-fill:hover:not(:disabled) {
+  color: #ffffff !important;
+  border-color: var(--soci-hover-fill-color, var(--soci-color-primary, #6366f1)) !important;
+  box-shadow: 0 4px 16px color-mix(in srgb, var(--soci-hover-fill-color, var(--soci-color-primary, #6366f1)) 30%, transparent) !important;
+}
+
+.soci-hover-fill:hover:not(:disabled) svg {
+  filter: brightness(0) invert(1);
+  transition: filter 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.soci-hover-fill:active:not(:disabled)::before {
+  background: color-mix(in srgb, var(--soci-hover-fill-color, var(--soci-color-primary, #6366f1)) 85%, black);
+}

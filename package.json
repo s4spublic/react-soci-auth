@@ -1,0 +1,77 @@
+{
+  "name": "react-soci-auth",
+  "version": "0.1.0",
+  "description": "A premium, glassmorphism-styled social authentication UI library for React",
+  "type": "module",
+  "main": "./dist/react-soci-auth.cjs",
+  "module": "./dist/react-soci-auth.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/react-soci-auth.js",
+      "require": "./dist/react-soci-auth.cjs",
+      "types": "./dist/index.d.ts"
+    },
+    "./styles": "./dist/style.css"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "test": "vitest --run",
+    "test:watch": "vitest",
+    "lint": "tsc --noEmit",
+    "demo": "npm run --prefix demo dev",
+    "prepublishOnly": "npm run lint && npm run test && npm run build"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/user/react-soci-auth"
+  },
+  "homepage": "https://github.com/user/react-soci-auth#readme",
+  "author": "",
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.1.0",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "fast-check": "^3.23.2",
+    "jsdom": "^25.0.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "typescript": "^5.6.3",
+    "vite": "^6.0.3",
+    "vite-plugin-dts": "^4.3.0",
+    "vitest": "^2.1.8"
+  },
+  "license": "MIT",
+  "keywords": [
+    "react",
+    "social-auth",
+    "oauth",
+    "glassmorphism",
+    "google",
+    "apple",
+    "facebook",
+    "github",
+    "authentication",
+    "ui-library",
+    "social-login",
+    "react-component"
+  ]
+}
