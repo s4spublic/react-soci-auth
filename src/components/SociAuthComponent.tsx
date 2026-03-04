@@ -103,7 +103,7 @@ const SociAuthComponentInner: React.FC<SociAuthComponentProps> = ({
     [theme.glass.blur, theme.glass.opacity, theme.glass.shadow, theme.glass.gradient],
   );
 
-  // ── Container styles ──────────────────────────────────────────
+  // ── Container styles applied to the outer soci-auth-component div ──
   const containerStyle = useMemo<React.CSSProperties>(
     () => ({
       display: 'flex',
@@ -121,18 +121,6 @@ const SociAuthComponentInner: React.FC<SociAuthComponentProps> = ({
       transition: `all var(--soci-motion-duration, ${theme.motion.duration}) var(--soci-motion-easing, ${theme.motion.easing})`,
     }),
     [resolvedLayout.direction, resolvedLayout.alignment, resolvedLayout.spacing, resolvedLayout.showLabels, config.buttonVariant, theme.motion.duration, theme.motion.easing],
-  );
-
-  // ── Wrapper style for outer alignment ─────────────────────────
-  const wrapperStyle = useMemo<React.CSSProperties>(
-    () => ({
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: ALIGNMENT_MAP[resolvedLayout.alignment] as React.CSSProperties['alignItems'],
-      width: '100%',
-      transition: `all var(--soci-motion-duration, ${theme.motion.duration}) var(--soci-motion-easing, ${theme.motion.easing})`,
-    }),
-    [resolvedLayout.alignment, theme.motion.duration, theme.motion.easing],
   );
 
   // ── Render provider buttons with optional dividers ────────────
@@ -182,7 +170,7 @@ const SociAuthComponentInner: React.FC<SociAuthComponentProps> = ({
   return (
     <div
       className={className}
-      style={{ ...glassCSSProperties, ...wrapperStyle, ...style }}
+      style={{ ...glassCSSProperties, ...containerStyle, ...style }}
       data-testid="soci-auth-component"
     >
       {config.showCard ? (
@@ -192,9 +180,7 @@ const SociAuthComponentInner: React.FC<SociAuthComponentProps> = ({
         </div>
       </AuthCard>
     ) : (
-      <div style={containerStyle}>
-        {buttonElements}
-      </div>
+      buttonElements
     )}
 
       {bannerState && (
