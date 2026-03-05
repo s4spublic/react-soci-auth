@@ -12,14 +12,14 @@
 </p>
 
 <p align="center">
-  <a href="https://s4spublic.github.io/react-soci-auth/">Live Demo</a> · <a href="#quick-start">Quick Start</a> · <a href="#configuration">Configuration</a> · <a href="#examples">Examples</a>
+  <a href="https://s4spublic.github.io/react-soci-auth/" target="_blank" rel="noopener noreferrer">Live Demo</a> · <a href="#quick-start">Quick Start</a> · <a href="#configuration">Configuration</a> · <a href="#examples">Examples</a>
 </p>
 
 ---
 
 Drop-in social login buttons for Google, Apple, Facebook, and GitHub with glassmorphism styling, dark mode, 3D depth effects, and full TypeScript support. Zero CSS imports required.
 
-**[See it in action →](https://s4spublic.github.io/react-soci-auth/)**
+<p><strong><a href="https://s4spublic.github.io/react-soci-auth/" target="_blank" rel="noopener noreferrer">See it in action →</a></strong></p>
 
 ## Features
 
