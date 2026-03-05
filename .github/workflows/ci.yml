@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup Node.js 20.x
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20.x
@@ -32,7 +32,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup Node.js 20.x
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20.x
@@ -41,7 +41,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Test
+      - name: Run tests
         run: npm run test
 
   build:
@@ -51,7 +51,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup Node.js 20.x
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20.x
@@ -63,9 +63,16 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: List dist contents
+        run: ls -la dist/
+
       - name: Verify dist artifacts
         run: |
-          test -f dist/react-soci-auth.js
-          test -f dist/react-soci-auth.cjs
-          test -f dist/index.d.ts
-          test -f dist/style.css
+          for f in dist/react-soci-auth.js dist/react-soci-auth.cjs dist/index.d.ts dist/react-soci-auth.css; do
+            if [ ! -f "$f" ]; then
+              echo "Missing: $f"
+              exit 1
+            fi
+            echo "Found: $f"
+          done
+          echo "All artifacts verified"

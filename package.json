@@ -12,7 +12,7 @@
       "import": "./dist/react-soci-auth.js",
       "require": "./dist/react-soci-auth.cjs"
     },
-    "./styles": "./dist/style.css"
+    "./styles": "./dist/react-soci-auth.css"
   },
   "files": [
     "dist",
