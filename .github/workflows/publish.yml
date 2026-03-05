@@ -1,7 +1,7 @@
 name: Publish to npm
 
-# This workflow requires an NPM_TOKEN secret to be set in GitHub repository settings.
-# To create one: npm.com → Access Tokens → Generate New Token (Automation type) → Add to GitHub Secrets
+# Requires NPM_TOKEN secret in GitHub repo settings.
+# Create one at npmjs.com: Access Tokens -> Generate New Token (Automation type) -> add to GitHub Secrets as NPM_TOKEN
 
 on:
   workflow_dispatch:
