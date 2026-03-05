@@ -22,7 +22,6 @@ npm install react-soci-auth
 
 ```tsx
 import { SociAuthProvider, SociAuthComponent } from 'react-soci-auth';
-import 'react-soci-auth/styles';
 
 const config = {
   providers: [
