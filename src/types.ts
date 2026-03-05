@@ -123,6 +123,9 @@ export interface SociAuth_Config {
   cardTitle?: string;
   cardSubtitle?: string;
   contentAlignment?: Alignment;
+  cardTitleColor?: string;
+  cardSubtitleColor?: string;
+  buttonTextColor?: string;
 }
 
 // ─── Response Types ──────────────────────────────────────────────
@@ -164,6 +167,9 @@ export interface ResolvedSociAuthConfig {
   cardTitle: string;
   cardSubtitle: string;
   contentAlignment: Alignment;
+  cardTitleColor: string;
+  cardSubtitleColor: string;
+  buttonTextColor: string;
 }
 
 // ─── Provider State ──────────────────────────────────────────────

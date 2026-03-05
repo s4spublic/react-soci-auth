@@ -153,6 +153,7 @@ const SociAuthComponentInner: React.FC<SociAuthComponentProps> = ({
           contentAlignment={contentAlignment}
           onClick={() => handleButtonClick(provider.name)}
           disabled={providers[provider.name]?.status === 'loading'}
+          style={config.buttonTextColor ? { color: config.buttonTextColor } : undefined}
         />,
       );
 
@@ -165,7 +166,7 @@ const SociAuthComponentInner: React.FC<SociAuthComponentProps> = ({
     });
 
     return elements;
-  }, [validProviders, resolvedLayout.showLabels, resolvedLayout.showDividers, handleButtonClick, providers, enable3DDepth, enableHoverFill, hoverFillColor, contentAlignment]);
+  }, [validProviders, resolvedLayout.showLabels, resolvedLayout.showDividers, handleButtonClick, providers, enable3DDepth, enableHoverFill, hoverFillColor, contentAlignment, config.buttonTextColor]);
 
   return (
     <div
@@ -174,7 +175,7 @@ const SociAuthComponentInner: React.FC<SociAuthComponentProps> = ({
       data-testid="soci-auth-component"
     >
       {config.showCard ? (
-      <AuthCard title={config.cardTitle} subtitle={config.cardSubtitle}>
+      <AuthCard title={config.cardTitle} subtitle={config.cardSubtitle} titleColor={config.cardTitleColor} subtitleColor={config.cardSubtitleColor}>
         <div style={containerStyle}>
           {buttonElements}
         </div>

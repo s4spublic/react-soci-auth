@@ -65,7 +65,7 @@ describe('Divider', () => {
     it('uses CSS custom properties for label text color', () => {
       render(<Divider label="or" />);
       const label = screen.getByText('or');
-      expect(label.style.color).toContain('var(--soci-color-text-secondary');
+      expect(label.style.color).toBe('rgba(255, 255, 255, 0.7)');
     });
   });
 

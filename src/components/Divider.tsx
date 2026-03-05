@@ -55,11 +55,11 @@ const DividerInner: React.FC<DividerProps> = ({ label, direction, className, sty
       padding: isHorizontal ? '0 4px' : `0 ${resolvedTheme.spacing.md}`,
       fontSize: '0.8125rem',
       fontWeight: 400,
-      color: `var(--soci-color-text-secondary, ${resolvedTheme.colors.textSecondary})`,
+      color: 'rgba(255, 255, 255, 0.7)',
       whiteSpace: 'nowrap',
       lineHeight: 1,
     }),
-    [resolvedTheme.colors.textSecondary, resolvedTheme.spacing.md, isHorizontal],
+    [resolvedTheme.spacing.md, isHorizontal],
   );
 
   return (
