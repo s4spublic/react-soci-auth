@@ -142,6 +142,9 @@ export function mergeConfig(config: SociAuth_Config): ResolvedSociAuthConfig {
   const cardTitle = config.cardTitle ?? '';
   const cardSubtitle = config.cardSubtitle ?? '';
   const contentAlignment = config.contentAlignment ?? 'center';
+  const cardTitleColor = config.cardTitleColor ?? '#ffffff';
+  const cardSubtitleColor = config.cardSubtitleColor ?? 'rgba(255, 255, 255, 0.7)';
+  const buttonTextColor = config.buttonTextColor ?? '';
 
   // Filter out providers missing required fields
   const validProviders = config.providers.filter(
@@ -166,5 +169,8 @@ export function mergeConfig(config: SociAuth_Config): ResolvedSociAuthConfig {
     cardTitle,
     cardSubtitle,
     contentAlignment,
+    cardTitleColor,
+    cardSubtitleColor,
+    buttonTextColor,
   };
 }

@@ -24,7 +24,6 @@ export interface DemoState {
   buttonShape: ButtonShape;
   iconPosition: IconPosition;
   buttonSize: ButtonSize;
-  glassBlur: number;
   glassOpacity: number;
   enable3DDepth: boolean;
   enableHoverFill: boolean;
@@ -33,6 +32,9 @@ export interface DemoState {
   cardSubtitle: string;
   providerLabels: Record<ProviderName, string>;
   contentAlignment: Alignment;
+  cardTitleColor: string;
+  cardSubtitleColor: string;
+  buttonTextColor: string;
 }
 
 export interface UseDemoStateReturn {
@@ -58,7 +60,6 @@ export const DEFAULT_DEMO_STATE: DemoState = {
   buttonShape: 'rounded',
   iconPosition: 'left',
   buttonSize: 'medium',
-  glassBlur: 12,
   glassOpacity: 0.15,
   enable3DDepth: false,
   enableHoverFill: false,
@@ -67,6 +68,9 @@ export const DEFAULT_DEMO_STATE: DemoState = {
   cardSubtitle: 'Sign in to continue',
   providerLabels: { google: 'Sign in with Google', apple: 'Sign in with Apple', facebook: 'Sign in with Facebook', github: 'Sign in with GitHub' },
   contentAlignment: 'center',
+  cardTitleColor: '#ffffff',
+  cardSubtitleColor: 'rgba(255, 255, 255, 0.7)',
+  buttonTextColor: '',
 };
 
 
@@ -105,7 +109,6 @@ export function deriveConfig(state: DemoState): SociAuth_Config {
     theme: {
       mode: state.themeMode,
       glass: {
-        blur: `${state.glassBlur}px`,
         opacity: state.glassOpacity,
       },
       button: {
@@ -128,6 +131,9 @@ export function deriveConfig(state: DemoState): SociAuth_Config {
     cardTitle: state.cardTitle,
     cardSubtitle: state.cardSubtitle,
     contentAlignment: state.contentAlignment,
+    cardTitleColor: state.cardTitleColor,
+    cardSubtitleColor: state.cardSubtitleColor,
+    buttonTextColor: state.buttonTextColor || undefined,
   };
 }
 
@@ -168,8 +174,6 @@ export function useDemoState(): UseDemoStateReturn {
       setState((prev) => ({ ...prev, iconPosition: value })),
     setButtonSize: (value: ButtonSize) =>
       setState((prev) => ({ ...prev, buttonSize: value })),
-    setGlassBlur: (value: number) =>
-      setState((prev) => ({ ...prev, glassBlur: value })),
     setGlassOpacity: (value: number) =>
       setState((prev) => ({ ...prev, glassOpacity: value })),
     setEnable3DDepth: (value: boolean) =>
@@ -188,6 +192,12 @@ export function useDemoState(): UseDemoStateReturn {
       setState((prev) => ({ ...prev, providerLabels: { ...prev.providerLabels, [provider]: label } })),
     setContentAlignment: (value: Alignment) =>
       setState((prev) => ({ ...prev, contentAlignment: value })),
+    setCardTitleColor: (value: string) =>
+      setState((prev) => ({ ...prev, cardTitleColor: value })),
+    setCardSubtitleColor: (value: string) =>
+      setState((prev) => ({ ...prev, cardSubtitleColor: value })),
+    setButtonTextColor: (value: string) =>
+      setState((prev) => ({ ...prev, buttonTextColor: value })),
   }), []);
 
   const resetToDefaults = useCallback(() => {

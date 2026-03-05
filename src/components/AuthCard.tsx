@@ -8,6 +8,8 @@ import { useSociAuth } from '../hooks/useSociAuth';
 export interface AuthCardProps {
   title?: string;
   subtitle?: string;
+  titleColor?: string;
+  subtitleColor?: string;
   className?: string;
   style?: React.CSSProperties;
   children: React.ReactNode;
@@ -18,6 +20,8 @@ export interface AuthCardProps {
 const AuthCardInner: React.FC<AuthCardProps> = ({
   title,
   subtitle,
+  titleColor,
+  subtitleColor,
   className,
   style,
   children,
@@ -57,10 +61,10 @@ const AuthCardInner: React.FC<AuthCardProps> = ({
       margin: 0,
       fontSize: '1.25rem',
       fontWeight: 600,
-      color: `var(--soci-color-text, ${resolvedTheme.colors.text})`,
+      color: titleColor || '#ffffff',
       lineHeight: 1.3,
     }),
-    [resolvedTheme.colors.text],
+    [titleColor],
   );
 
   const subtitleStyle = useMemo<React.CSSProperties>(
@@ -68,10 +72,10 @@ const AuthCardInner: React.FC<AuthCardProps> = ({
       margin: `${resolvedTheme.spacing.xs} 0 0`,
       fontSize: '0.875rem',
       fontWeight: 400,
-      color: `var(--soci-color-text-secondary, ${resolvedTheme.colors.textSecondary})`,
+      color: subtitleColor || 'rgba(255, 255, 255, 0.7)',
       lineHeight: 1.4,
     }),
-    [resolvedTheme.colors.textSecondary, resolvedTheme.spacing.xs],
+    [subtitleColor, resolvedTheme.spacing.xs],
   );
 
   const headerStyle = useMemo<React.CSSProperties>(

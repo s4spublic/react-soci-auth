@@ -295,15 +295,6 @@ export const ControlPanel: React.FC<ControlPanelProps> = ({ state, setters, onRe
       <div style={sectionStyle}>
         <div style={sectionTitleStyle}>Glass Effect</div>
         <SliderControl
-          label="Blur Intensity"
-          value={state.glassBlur}
-          min={0}
-          max={30}
-          step={1}
-          onChange={(val) => setters.setGlassBlur(val)}
-          displayValue={`${state.glassBlur}px`}
-        />
-        <SliderControl
           label="Opacity"
           value={state.glassOpacity}
           min={0}
@@ -358,6 +349,68 @@ export const ControlPanel: React.FC<ControlPanelProps> = ({ state, setters, onRe
           value={state.cardSubtitle}
           onChange={(val) => setters.setCardSubtitle(val)}
         />
+        <div style={{ marginBottom: '8px' }}>
+          <div style={controlRowStyle}>
+            <span style={labelStyle}>Title Color</span>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <input
+                type="color"
+                value={state.cardTitleColor}
+                onChange={(e) => setters.setCardTitleColor(e.target.value)}
+                style={{ width: '32px', height: '24px', padding: 0, border: '1px solid #cbd5e1', borderRadius: '4px', cursor: 'pointer' }}
+              />
+              <span style={{ fontSize: '12px', color: '#64748b', fontFamily: 'monospace' }}>{state.cardTitleColor}</span>
+            </div>
+          </div>
+        </div>
+        <div style={{ marginBottom: '8px' }}>
+          <div style={controlRowStyle}>
+            <span style={labelStyle}>Subtitle Color</span>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <input
+                type="color"
+                value={state.cardSubtitleColor.startsWith('rgba') ? '#b3b3b3' : state.cardSubtitleColor}
+                onChange={(e) => setters.setCardSubtitleColor(e.target.value)}
+                style={{ width: '32px', height: '24px', padding: 0, border: '1px solid #cbd5e1', borderRadius: '4px', cursor: 'pointer' }}
+              />
+              <span style={{ fontSize: '12px', color: '#64748b', fontFamily: 'monospace' }}>{state.cardSubtitleColor}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* ─── Button Text ──────────────────────────────── */}
+      <div style={sectionStyle}>
+        <div style={sectionTitleStyle}>Button Text</div>
+        <div style={{ marginBottom: '8px' }}>
+          <div style={controlRowStyle}>
+            <span style={labelStyle}>Text Color</span>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <input
+                type="color"
+                value={state.buttonTextColor || '#1a1a2e'}
+                onChange={(e) => setters.setButtonTextColor(e.target.value)}
+                style={{ width: '32px', height: '24px', padding: 0, border: '1px solid #cbd5e1', borderRadius: '4px', cursor: 'pointer' }}
+              />
+              <span style={{ fontSize: '12px', color: '#64748b', fontFamily: 'monospace' }}>{state.buttonTextColor || 'default'}</span>
+            </div>
+          </div>
+          {state.buttonTextColor && (
+            <button
+              onClick={() => setters.setButtonTextColor('')}
+              style={{
+                fontSize: '12px',
+                color: '#6366f1',
+                background: 'none',
+                border: 'none',
+                cursor: 'pointer',
+                padding: '2px 0',
+              }}
+            >
+              Reset to default
+            </button>
+          )}
+        </div>
       </div>
 
       {/* ─── Button Labels ──────────────────────────────── */}
