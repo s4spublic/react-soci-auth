@@ -83,7 +83,17 @@ const CLIENT_IDS: Record<ProviderName, string> = {
   github: import.meta.env.VITE_GITHUB_CLIENT_ID ?? 'demo-client-id',
 };
 
-const REDIRECT_URI: string = import.meta.env.VITE_REDIRECT_URI ?? 'http://localhost:5173/callback';
+function getRedirectUri(): string {
+  // Use env var if explicitly set
+  if (import.meta.env.VITE_REDIRECT_URI) {
+    return import.meta.env.VITE_REDIRECT_URI;
+  }
+  // Auto-detect based on current location
+  const base = window.location.origin + (import.meta.env.BASE_URL || '/');
+  return base + 'callback';
+}
+
+const REDIRECT_URI: string = getRedirectUri();
 
 const DEFAULT_SCOPES: Record<ProviderName, string[]> = {
   google: ['openid', 'email', 'profile'],
