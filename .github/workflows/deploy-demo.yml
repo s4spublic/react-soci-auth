@@ -41,6 +41,7 @@ jobs:
           VITE_APPLE_CLIENT_ID: ${{ vars.VITE_APPLE_CLIENT_ID }}
           VITE_FACEBOOK_CLIENT_ID: ${{ vars.VITE_FACEBOOK_CLIENT_ID }}
           VITE_GITHUB_CLIENT_ID: ${{ vars.VITE_GITHUB_CLIENT_ID }}
+          BASE_URL: ${{ vars.BASE_URL }}
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
