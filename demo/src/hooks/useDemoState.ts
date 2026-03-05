@@ -8,6 +8,7 @@ import type {
   ThemeMode,
   Alignment,
   SociAuth_Config,
+  ThemeConfig,
 } from 'react-soci-auth';
 
 // ─── DemoState Interface ─────────────────────────────────────────
@@ -110,7 +111,7 @@ export function deriveConfig(state: DemoState): SociAuth_Config {
       mode: state.themeMode,
       glass: {
         opacity: state.glassOpacity,
-      },
+      } as ThemeConfig['glass'],
       button: {
         shape: state.buttonShape,
         iconPosition: state.iconPosition,
