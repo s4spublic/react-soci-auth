@@ -21,6 +21,9 @@ Drop-in social login buttons for Google, Apple, Facebook, and GitHub with glassm
 
 <p><strong><a href="https://s4spublic.github.io/react-soci-auth/" target="_blank" rel="noopener noreferrer">See it in action →</a></strong></p>
 
+
+> **Also available for React Native Mobile:** [`react-native-soci-auth`](https://www.npmjs.com/package/react-native-soci-auth)
+
 ## Features
 
 - 🔐 **OAuth 2.0** popup-based flow for Google, Apple, Facebook, and GitHub
